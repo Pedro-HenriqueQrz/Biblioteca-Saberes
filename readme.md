@@ -208,7 +208,7 @@ exports.seed = async function(knex) {
         {
             id: 1,
             name: 'Administrador',
-            email: 'acervodelivrosdigitalsaberes@gmail.com',
+            email: 'admin@email.com',
             password: hashedPassword,
             role: 'admin',
             nickname: 'Administrador',
@@ -228,5 +228,4 @@ exports.seed = async function(knex) {
             updated_at: new Date()
         }
     ]);
->>>>>>> 9e1c7a20bd38f77ceecc680cceeb2320903582ff
 };
