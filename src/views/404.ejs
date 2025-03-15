@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erro 404 - Página Não Encontrada</title>
+    <style>
+        /* Reset básico */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        @font-face {
+            font-family: 'Roboto';
+            src: url('../fonts/Roboto-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* Container centralizado */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+        }
+
+        /* Estilo do título 404 */
+        h1 {
+            font-size: 120px;
+            color: #ff4444;
+            margin: 0;
+            line-height: 1;
+            animation: jump 1s ease-in-out infinite; /* Animação de pulo */
+            font-family: 'Roboto';
+        }
+
+        /* Animação de pulo */
+        @keyframes jump {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Estilo do texto */
+        p {
+            font-size: 24px;
+            color: #333;
+            margin: 20px 0;
+            font-family: 'Roboto';
+        }
+
+        /* Estilo do link */
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 18px;
+            border: 2px solid #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Roboto';
+        }
+
+        /* Efeito hover no link */
+        a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>404</h1>
+        <p>Página não encontrada</p>
+        <a href="/">Voltar para a página inicial</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1554 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*Fonts*/
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open-Sans';
+    src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.container {
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Navbar */
+nav {
+    background: #fcfafa;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 2rem 0;
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #34495e;
+    transition: color 0.3s;
+    font-family: 'Poppins';
+}
+
+.menu a:hover {
+    color: #3498db;
+}
+
+/* Ícone Hamburguer (escondido padrão) */
+.hamburguer {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #2c3e50;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .menu {
+        display: flex;
+        opacity: 0;
+        transform: translateY(-10px);
+        visibility: hidden;
+        transition: opacity 0.1s ease, transform 0.1s ease;
+        flex-direction: column;
+        position: absolute;
+        top: 6.7rem;
+        right: 0;
+        background: #fcfafa;
+        padding: 1rem;
+        box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+        gap: 0;
+    }
+
+    .menu a {
+        padding: 0.75rem;
+    }
+
+    .menu.active {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+        width: 100%;
+        border-top: rgb(19, 75, 139) 1px solid;
+        z-index: 3;
+    }
+
+    .hamburguer {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-content {
+        flex-direction: row;
+        gap: 1rem;
+    }
+}
+
+
+/*Top Page*/
+
+.container-body {
+    margin: 0 auto;
+    text-align: center;
+    padding: 0;
+}
+
+.top {
+    background: linear-gradient(to right, rgb(65, 133, 211), rgb(42, 111, 190), rgb(19, 75, 139));
+    padding: 5rem;
+}
+
+.top h1 {
+    color: #fff;
+    font-family: 'Roboto';
+}
+
+/* Animação de fade-in que vem de baixo */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Começa 20px abaixo */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Termina na posição original */
+    }
+}
+
+/* Aplica a animação ao título */
+.top h1 {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-in-out forwards;
+    animation-delay: 0.1s;
+}
+
+/*Barra Pesquisa*/
+
+.container-livros {
+    background-color: #f6f7fb;
+}
+
+
+.search-container {
+    width: 100%;
+    padding: 2rem 8rem;
+    transition: padding 0.3s ease;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    width: 100%;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    background: transparent;
+    width: 100%;
+    font-family: 'Roboto';
+}
+
+.search-form {
+    flex: 2;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    background: transparent;
+}
+
+@media (max-width: 768px) {
+    .search-container {
+        padding: 1.5rem 2rem; 
+    }
+    
+    .search-bar {
+        padding: 0.5rem;
+    }
+    
+    .search-input {
+        font-size: 0.875rem;
+        padding: 0.5rem 0.75rem;
+        width: 100%;
+    }
+    .search-form {
+        font-size: 0.875rem;
+        padding: 0.5rem 0.75rem;
+    }
+    
+    
+}
+
+@media (max-width: 480px) {
+    .search-container {
+        padding: 1rem 0; 
+    }
+    
+    .search-bar {
+        padding: 0.25rem;
+    }
+}
+
+/*Livros*/
+
+.container-livros {
+    background-color: #f6f7fb;
+}
+
+.livros-grid {
+    padding: 3rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.livro-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.livro-card:hover {
+    transform: translateY(-5px);
+}
+
+.livro-imagem-container {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.livro-imagem {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.livro-info {
+    padding: 0 15px 15px 15px;
+    text-align: center;
+}
+
+.livro-titulo {
+    font-size: 0.95rem;
+    color: #2c3e50;
+    margin-bottom: 0.3rem;
+    line-height: 1.2;
+    font-family: 'Roboto';
+}
+
+.livro-autor {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    font-family: 'Roboto';
+}
+
+.livro-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Responsividade Livros Cards */
+@media (max-width: 768px) {
+    .livros-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .livros-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+
+
+/*Carrossel */
+.carrossel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.carrossel-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 6rem 0;
+    color: white;
+    background: linear-gradient(to right, rgb(65, 133, 211), rgb(42, 111, 190), rgb(19, 75, 139));;
+}
+
+
+
+.slide h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-family: 'Poppins';
+}
+
+.slide h2 span {
+    color: #0f69a6;
+    background: #fcfafa;
+    border-radius: 5px;
+    padding: 1px;
+}
+
+.slide p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 2rem 0;
+    font-family: 'Roboto';
+}
+
+.slide p span {
+    color: #b0dfff;
+    font-size: 1.3rem;
+    font-family: 'Roboto';
+}
+
+.slide .btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background-color: white;
+    color: #2c3e50;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Roboto';
+}
+
+.slide .btn:hover {
+    background-color: #73c7ff;
+    color: white;
+}
+
+@media (max-width: 480px) {
+    .slide h2 {
+        text-align: center;
+    }
+
+    .slide p {
+        text-align: justify;
+        line-height: 1.6;
+    }
+
+    .slide {
+        padding: 2rem;
+    }
+}
+
+
+/* Bolinhas de navegação */
+.carrossel-bolinhas {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.bolinha {
+    width: 12px;
+    height: 12px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.bolinha.ativa {
+    background-color: #73c7ff;
+}
+
+/* Animação*/
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInBottom {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Aplica as animações ao carrossel */
+.slide h2 {
+    opacity: 0;
+    animation: slideInBottom 0.8s ease-in-out forwards;
+    animation-delay: 0.1s;
+}
+
+.slide p {
+    opacity: 0;
+    animation: slideInBottom 0.8s ease-in-out forwards;
+    animation-delay: 0.1s;
+    font-family: 'Roboto';
+}
+
+.slide .btn {
+    opacity: 0;
+    animation: slideInBottom 0.8s ease-in-out forwards;
+    animation-delay: 0.1s;
+}
+
+
+/* Container principal das categorias */
+.categoria-livros {
+    padding: 2rem;
+    max-width: 75rem;
+    margin: 0 auto;
+}
+
+.categoria-container {
+    margin-bottom: 3rem;
+}
+
+.categoria-titulo {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #3498db;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    font-family: 'Poppins';
+}
+
+/* Grid de livros */
+.categoria-livros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Card de cada livro */
+.categoria-livro-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.categoria-livro-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.categoria-livro-imagem {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+.categoria-livro-info {
+    padding: 1rem;
+    text-align: left;
+}
+
+.categoria-livro-titulo {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-family: 'Roboto';
+}
+
+.categoria-livro-autor, .categoria-livro-genero {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-bottom: 0.5rem;
+    font-family: 'Roboto';
+}
+
+.categoria-livro-link {
+    text-decoration: none;
+}
+
+.categoria-livro-link:hover {
+    text-decoration: none;
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    
+    .categoria-livros {
+        padding: 1rem;
+    }
+
+    .categoria-livros-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .categoria-livro-imagem {
+        height: 200px;
+    }
+
+    .categoria-livro-titulo {
+        font-size: 1rem;
+    }
+
+    .categoria-livro-autor, .categoria-livro-genero {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .categoria-livros {
+        padding: 1rem;
+    }
+    .categoria-livros-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    .categoria-livro-imagem {
+        height: 150px;
+    }
+
+    .categoria-livro-titulo {
+        font-size: 0.9rem;
+    }
+
+    .categoria-livro-autor, .categoria-livro-genero {
+        font-size: 0.75rem;
+    }
+}
+
+.fade-in-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+}
+
+.categoria-livro-card:hover {
+    transform: translateY(-5px);
+}
+
+/*Livros Detalhes*/
+
+
+/* Layout dos detalhes do livro */
+.detalhes-livro {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+/* Imagem do livro e botões de ação */
+.detalhes-livro-imagem-container {
+    flex: 1;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.detalhes-livro-imagem {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.detalhes-livro-botoes {
+    display: flex;
+    gap: 1rem;
+    justify-content: center; /* Centraliza os botões */
+}
+
+/* Botões de ação */
+.detalhes-btn-download,
+.detalhes-btn-ler,
+.detalhes-btn-favoritar {
+    padding: 0.5rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 45px;
+}
+
+.detalhes-btn-download:hover,
+.detalhes-btn-ler:hover,
+.detalhes-btn-favoritar:hover {
+    background-color: #0056b9;
+    transform: scale(1.05);
+}
+
+.detalhes-btn-download i,
+.detalhes-btn-ler i,
+.detalhes-btn-favoritar i {
+    font-size: 1.2rem;
+}
+
+.detalhes-btn-favoritar {
+    background-color: #ff4444;
+}
+
+.detalhes-btn-favoritar:hover {
+    background-color: #cc0000;
+}
+
+.detalhes-livro-info {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.detalhes-livro-titulo {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-family: 'Roboto';
+}
+
+.detalhes-livro-autor, .detalhes-livro-genero {
+    font-size: 1rem;
+    color: #7f8c8d;
+    margin-bottom: 0.5rem;
+    font-family: 'Roboto';
+}
+
+.detalhes-livro-descricao {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #34495e;
+    text-align: justify;
+    font-family: 'Open-Sans';
+}
+
+/* Avaliação */
+.detalhes-livro-avaliacao {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-family: 'Roboto';
+}
+
+.detalhes-avaliacao-texto {
+    font-size: 1rem;
+    color: #7f8c8d;
+}
+
+/* Sistema de estrelas */
+.star-rating {
+    direction: rtl;
+    display: inline-block;
+    padding: 0;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    color: #bbb;
+    font-size: 24px;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+    color: #f2b600;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #f2b600;
+}
+
+.detalhes-btn-avaliar {
+    padding: 0.5rem 1rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.detalhes-btn-avaliar:hover {
+    background-color: #2980b9;
+}
+
+/* Comentários */
+.detalhes-livro-comentarios {
+    margin: 2rem 0;
+    font-family: 'Roboto';
+}
+
+.detalhes-comentarios-lista {
+    list-style: none;
+    padding: 0;
+}
+
+.detalhes-comentario-item {
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    border: 1px solid #eee;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.detalhes-comentario-item strong {
+    color: #2c3e50;
+}
+
+.detalhes-comentario-item p {
+    margin: 1rem 0;
+    word-wrap: break-word; 
+    overflow-y: auto; 
+    max-height: 100px; 
+}
+
+.detalhes-btn-deletar{
+    padding: 0.5rem 1rem;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Roboto';
+}
+
+.detalhes-textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    resize: vertical;
+}
+
+.detalhes-btn-comentar {
+    padding: 0.5rem 1rem;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0.5rem;
+    font-family: 'Roboto';
+}
+
+.detalhes-btn-comentar:hover {
+    background-color: #27ae60;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .detalhes-livro {
+        flex-direction: column;
+    }
+
+    .detalhes-livro-imagem-container {
+        max-width: 100%;
+    }
+
+    .detalhes-livro-titulo {
+        font-size: 1.5rem;
+    }
+
+    .detalhes-livro-autor, .detalhes-livro-genero {
+        font-size: 0.9rem;
+    }
+
+    .detalhes-livro-descricao {
+        font-size: 0.9rem;
+    }
+
+    .star-rating label {
+        font-size: 20px;
+    }
+
+    .detalhes-btn-avaliar, .detalhes-btn-favoritar, .detalhes-btn-comentar, .detalhes-btn-download, .detalhes-btn-ler {
+        font-size: 1rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .detalhes-livro-titulo {
+        font-size: 1.2rem;
+    }
+
+    .detalhes-livro-autor, .detalhes-livro-genero {
+        font-size: 0.8rem;
+    }
+
+    .detalhes-livro-descricao {
+        font-size: 0.8rem;
+    }
+
+    .star-rating label {
+        font-size: 18px;
+    }
+
+    .detalhes-btn-avaliar, .detalhes-btn-favoritar, .detalhes-btn-comentar, .detalhes-btn-download, .detalhes-btn-ler {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.6rem;
+    }
+}
+
+/*Favoritos*/
+
+.favoritos-top {
+    text-align: center;
+    background: linear-gradient(to right, rgb(65, 133, 211), rgb(42, 111, 190), rgb(19, 75, 139));
+    padding: 5rem;
+}
+
+.favoritos-top h1 {
+    font-size: 2rem;
+    color: #fff;
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-in-out forwards;
+    animation-delay: 0.1s;
+    font-family: 'Roboto';
+}
+
+.favoritos-container-livros {
+    background-color: #f6f7fb;
+    height: 100vh;
+}
+
+.favoritos-livros-grid {
+    padding: 3rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.favoritos-livro-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid #e0e0e0;
+}
+
+.favoritos-livro-card a {
+    text-decoration: none;
+}
+
+.favoritos-livro-card:hover {
+    transform: translateY(-5px);
+}
+
+.favoritos-livro-imagem-container {
+    position: relative;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    background-color: #f9f9f9;
+}
+
+.favoritos-livro-imagem {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.favoritos-remover-form {
+    position: absolute;
+    top: -20px;
+    right: -27px;
+}
+
+.favoritos-remover-botao {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    width: 70px;
+    height: 70px;
+    border-radius: 34%;
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.favoritos-remover-botao:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+.favoritos-livro-info {
+    padding: 15px;
+    text-align: center;
+    background-color: white;
+}
+
+.favoritos-livro-titulo {
+    font-size: 0.95rem;
+    color: #2c3e50;
+    margin-bottom: 0.3rem;
+    line-height: 1.2;
+    font-family: 'Roboto';
+}
+
+.favoritos-livro-autor {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    font-family: 'Roboto';
+}
+
+@media (max-width: 768px) {
+    .favoritos-livros-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .favoritos-livros-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/*Login*/
+
+.login-page {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.login-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    text-align: center;
+}
+
+.login-card h1 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.login-card p {
+    font-size: 1rem;
+    color: #7f8c8d;
+    margin-bottom: 2rem;
+}
+
+.login-form .input-group {
+    margin-bottom: 1.5rem;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.login-form input:focus {
+    border-color: #007bff;
+}
+
+.password-container {
+    position: relative;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 40px; 
+}
+
+.password-container .fa-eye {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #7f8c8d;
+    transition: color 0.3s ease;
+}
+
+.password-container .fa-eye:hover {
+    color: #2c3e50;
+}
+
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
+
+.login-options {
+    margin: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.login-options .link {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.login-options .link:hover {
+    color: #0056b3;
+}
+
+.login-options .divider {
+    color: #7f8c8d;
+}
+
+.social-login {
+    margin: 1.5rem 0;
+}
+
+.social-login p {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-bottom: 0.5rem;
+}
+
+.google-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px 20px;
+    color: #2c3e50;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.google-button img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.google-button:hover {
+    background-color: #f6f7fb;
+}
+
+.footer-links {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.footer-links .link {
+    color: #7f8c8d;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links .link:hover {
+    color: #2c3e50;
+}
+
+.footer-links .divider {
+    color: #7f8c8d;
+}
+
+/*registrar*/
+
+.error-messages {
+    background-color: #ffebee;
+    border: 1px solid #ffcdd2;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.error-messages ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.error-messages li {
+    font-size: 0.9rem;
+    color: #c62828;
+    margin-bottom: 0.5rem;
+}
+
+.login-form .input-group {
+    width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*Termos de serviço*/
+
+.terms-page {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.terms-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    font-family: 'Roboto';
+}
+
+.terms-card h1 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.terms-card h1 i {
+    color: #007bff;
+}
+
+.terms-card .intro {
+    font-size: 1rem;
+    color: #7f8c8d;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.terms-section {
+    margin-bottom: 1.5rem;
+}
+
+.terms-section h2 {
+    font-size: 1.25rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.terms-section h2 i {
+    color: #007bff;
+}
+
+.terms-section p {
+    font-size: 1rem;
+    color: #7f8c8d;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.terms-options {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.terms-options .link {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.terms-options .link:hover {
+    color: #0056b3;
+}
+
+.terms-options .link i {
+    font-size: 0.9rem;
+}
+
+
+/*Footer*/
+
+.footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    color: #fff;
+    font-size: 0.875rem;
+    border-top: 1px solid #eee;
+    width: 100%;
+    margin: 0 auto;
+    background: linear-gradient(to right, rgb(65, 133, 211), rgb(42, 111, 190), rgb(19, 75, 139));
+    font-family: 'Roboto';
+}
+
+.footer p {
+    margin: 0.25rem 0;
+}
+
+.footer-nome {
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 1rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Estilo para a página de redefinição de senha */
+
+
+.reset-password-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Roboto';
+
+}
+
+.reset-password-container h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.reset-password-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.reset-password-container input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.reset-password-container input[type="password"]:focus {
+    border-color: #007bff;
+}
+
+.reset-password-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.reset-password-container button:hover {
+    background-color: #0056b3;
+}
+
+.reset-password-container a {
+    display: block;
+    margin-top: 1rem;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.reset-password-container a:hover {
+    color: #0056b3;
+}
+
+.reset-password-container .error-messages {
+    background-color: #ffebee;
+    border: 1px solid #ffcdd2;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.reset-password-container .error-messages ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.reset-password-container .error-messages li {
+    font-size: 0.9rem;
+    color: #c62828;
+    margin-bottom: 0.5rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .reset-password-container {
+        padding: 1.5rem;
+    }
+
+    .reset-password-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .reset-password-container input[type="password"] {
+        font-size: 0.875rem;
+        padding: 10px;
+    }
+
+    .reset-password-container button {
+        font-size: 0.875rem;
+        padding: 10px;
+    }
+
+    .reset-password-container a {
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .reset-password-container {
+        padding: 1rem;
+    }
+
+    .reset-password-container h2 {
+        font-size: 1.2rem;
+    }
+
+    .reset-password-container input[type="password"] {
+        font-size: 0.75rem;
+        padding: 8px;
+    }
+
+    .reset-password-container button {
+        font-size: 0.75rem;
+        padding: 8px;
+    }
+
+    .reset-password-container a {
+        font-size: 0.75rem;
+    }
+}
+
+/* Estilo para a página "Como Publicar" */
+.como-publicar-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.como-publicar-container h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.como-publicar-container h2 span {
+    color: #3498db;
+}
+
+.como-publicar-container p {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.como-publicar-container p span {
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.como-publicar-container .btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.como-publicar-container .btn:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .como-publicar-container {
+        padding: 1.5rem;
+    }
+
+    .como-publicar-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .como-publicar-container p {
+        font-size: 1rem;
+    }
+
+    .como-publicar-container .btn {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .como-publicar-container {
+        padding: 1rem;
+    }
+
+    .como-publicar-container h2 {
+        font-size: 1.2rem;
+    }
+
+    .como-publicar-container p {
+        font-size: 0.9rem;
+    }
+
+    .como-publicar-container .btn {
+        font-size: 0.8rem;
+        padding: 0.5rem 1rem;
+    }
+}

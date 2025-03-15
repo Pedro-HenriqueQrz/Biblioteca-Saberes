@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= book.title %> - Saberes</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Ícones (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<nav>
+    <div class="container">
+        <div class="navbar-content">
+            <a href="/user" class="logo">SABERES</a>
+            <button class="hamburguer" aria-label="Abrir menu">
+                ☰ 
+            </button>
+            <!-- Menu -->
+            <div class="menu">
+                <a href="/user">Menu</a>
+                <a href="/user/all-books">Acervo</a>
+                <a href="/user/favorites">Favoritos</a>
+                <a href="/user/profile">Perfil</a>
+                <a href="/auth/login">Sair</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<body>
+    <div class="container">
+        <div class="detalhes-livro">
+            <!-- Imagem do livro e botões de ação -->
+            <div class="detalhes-livro-imagem-container">
+                <img src="<%= book.cover_image %>" alt="<%= book.title %>" class="detalhes-livro-imagem">
+                <div class="detalhes-livro-botoes">
+                    <!-- Botão de Download -->
+                    <a href="/user/books/download/<%= book.id %>" class="detalhes-btn-download">
+                        <i class="fas fa-download"></i>
+                    </a>
+
+                    <!-- Botão de Ler Online -->
+                    <a href="/user/books/read/<%= book.id %>" class="detalhes-btn-ler" target="_blank">
+                        <i class="fas fa-book-open"></i>
+                    </a>
+
+                    <!-- Botão de Favoritar -->
+                    <form action="/user/book/<%= book.id %>/favorite" method="POST" style="display:inline;">
+                        <button type="submit" class="detalhes-btn-favoritar">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+    
+            <!-- Informações do livro -->
+            <div class="detalhes-livro-info">
+                <h2 class="detalhes-livro-titulo"><%= book.title %></h2>
+                <p class="detalhes-livro-autor"><strong>Autor:</strong> <%= book.author %></p>
+                <p class="detalhes-livro-genero"><strong>Gênero:</strong> <%= book.genre %></p>
+                <p class="detalhes-livro-descricao"><%= book.description %></p>
+    
+                <!-- Avaliação -->
+                <div class="detalhes-livro-avaliacao">
+                    <h3>Avaliação: <%= book.rating %> <span class="detalhes-avaliacao-texto">(Baseado em <%= book.ratings_count %> avaliações)</span></h3>
+                    <form action="/user/book/<%= book.id %>/rate" method="POST">
+                        <div class="star-rating">
+                            <input type="radio" id="5-stars" name="rating" value="5" />
+                            <label for="5-stars" class="star">&#9733;</label>
+                            <input type="radio" id="4-stars" name="rating" value="4" />
+                            <label for="4-stars" class="star">&#9733;</label>
+                            <input type="radio" id="3-stars" name="rating" value="3" />
+                            <label for="3-stars" class="star">&#9733;</label>
+                            <input type="radio" id="2-stars" name="rating" value="2" />
+                            <label for="2-stars" class="star">&#9733;</label>
+                            <input type="radio" id="1-star" name="rating" value="1" />
+                            <label for="1-star" class="star">&#9733;</label>
+                        </div>
+                        <button type="submit" class="detalhes-btn-avaliar">Avaliar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Comentários -->
+        <div class="detalhes-livro-comentarios">
+            <h3>Comentários</h3>
+            <ul class="detalhes-comentarios-lista">
+                <% comments.forEach(comment => { %>
+                    <li class="detalhes-comentario-item">
+                        <strong><%= comment.nickname %>:</strong>
+                        <p><%= comment.comment %></p>
+                        <% if (comment.user_id === user.id || user.role === 'admin') { %>
+                            <form action="/user/book/<%= book.id %>/comment/<%= comment.id %>/delete" method="POST" style="display:inline;">
+                                <button type="submit" class="detalhes-btn-deletar">❎ Deletar</button>
+                            </form>
+                        <% } %>
+                    </li>
+                <% }) %>
+            </ul>
+            <form action="/user/book/<%= book.id %>/comment" method="POST">
+                <label for="comment">Deixe seu comentário:</label>
+                <textarea id="comment" name="comment" required class="detalhes-textarea"></textarea>
+                <button type="submit" class="detalhes-btn-comentar">Comentar</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p class="footer-nome">Acervo de livros digitais - Saberes</p>
+        <p>&copy; 2025 Todos os direitos reservados</p>
+    </footer>
+
+    <script src="/javascript/script.js"></script>
+
+</body>
+</html>

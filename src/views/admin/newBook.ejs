@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Novo Livro - Saberes</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f6f7fb;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Adicionar Novo Livro</h1>
+        <form action="/admin/novolivro" method="POST" enctype="multipart/form-data">
+            <label for="title">Título:</label>
+            <input type="text" id="title" name="title" required>
+            
+            <label for="author">Autor:</label>
+            <input type="text" id="author" name="author" required>
+            
+            <label for="genre">Gênero:</label>
+            <input type="text" id="genre" name="genre" required>
+            
+            <label for="description">Descrição:</label>
+            <textarea id="description" name="description" required></textarea>
+            
+            <label for="cover_image">Imagem de Capa (JPEG ou PNG):</label>
+            <input type="file" id="cover_image" name="cover_image" accept="image/jpeg, image/png">
+            
+            <label for="book_file">Arquivo do Livro (PDF):</label>
+            <input type="file" id="book_file" name="book_file" accept="application/pdf">
+            
+            <button type="submit" class="submit-button">Adicionar Livro</button>
+        </form>
+    </div>
+</body>
+</html>

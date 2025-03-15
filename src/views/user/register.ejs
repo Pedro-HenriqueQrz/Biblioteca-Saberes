@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar - Saberes</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- Link para o CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+                body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #f6f7fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Roboto';
+        }
+    </style>
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-card">
+            <h1>Crie sua conta</h1>
+            <p>Preencha os campos abaixo para se registrar.</p>
+
+            <!-- Mensagens de erro -->
+            <% if (errors && errors.length > 0) { %>
+                <div class="error-messages">
+                    <ul>
+                        <% errors.forEach(error => { %>
+                            <li><%= error.msg %></li>
+                        <% }) %>
+                    </ul>
+                </div>
+            <% } %>
+
+            <!-- Formulário de registro -->
+            <form action="/auth/register" method="POST" class="login-form">
+                <div class="input-group">
+                    <input type="text" name="name" placeholder="Nome" required />
+                </div>
+                <div class="input-group">
+                    <input type="text" name="nickname" placeholder="Nickname" required />
+                </div>
+                <div class="input-group">
+                    <input type="email" name="email" placeholder="Email" required />
+                </div>
+                <div class="input-group">
+                    <div class="password-container">
+                        <input type="password" name="password" id="password" placeholder="Senha" required />
+                        <i class="fas fa-eye" id="togglePassword"></i>
+                    </div>
+                </div>
+                <button type="submit" class="login-button">Registrar</button>
+            </form>
+
+            <div class="login-options">
+                <a href="/auth/login" class="link">Já tem uma conta? Faça login</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="/javascript/script.js"></script>
+</body>
+</html>

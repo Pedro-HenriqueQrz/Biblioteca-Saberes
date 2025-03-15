@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Livro</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto';
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 1.25rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Editando: <%= book.title %></h1>
+        <div class="edit-header">
+            <div class="edit-cover">
+                <% if (book.cover_image) { %>
+                    <img src="<%= book.cover_image %>" alt="Capa de <%= book.title %>">
+                <% } else { %>
+                    <p>Nenhuma capa disponível</p>
+                <% } %>
+                <input type="file" name="cover_image">
+            </div>
+            <div class="edit-info">
+                <div class="form-group">
+                    <label for="title">Título:</label>
+                    <input type="text" name="title" value="<%= book.title %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="author">Autor:</label>
+                    <input type="text" name="author" value="<%= book.author %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="genre">Gênero:</label>
+                    <input type="text" name="genre" value="<%= book.genre %>" required>
+                </div>
+            </div>
+        </div>
+        <div class="description">
+            <label for="description">Descrição:</label>
+            <textarea name="description"><%= book.description %></textarea>
+        </div>
+        <div class="file-upload">
+            <label for="book_file">
+                <i class="fas fa-file-pdf"></i> Selecionar novo arquivo (PDF):
+            </label>
+            <input type="file" name="book_file">
+            <% if (book.book_file) { %>
+                <p>
+                    <i class="fas fa-download"></i> Arquivo atual: 
+                    <a href="<%= book.book_file %>" target="_blank">Baixar</a>
+                </p>
+            <% } %>
+        </div>
+        <button type="submit" class="btn">
+            <i class="fas fa-save"></i> Atualizar Livro
+        </button>
+        <a href="/admin/livros" class="back-link">
+            <i class="fas fa-arrow-left"></i> Voltar para a lista de livros
+        </a>
+    </div>
+</body>
+</html>

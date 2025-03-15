@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livros Favoritos - Saberes</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- Certifique-se de incluir o CSS -->
+</head>
+<body>
+
+    <!-- NavBar (igual ao do acervo) -->
+    <nav>
+        <div class="container">
+            <div class="navbar-content">
+                <a href="/user" class="logo">SABERES</a>
+                <button class="hamburguer" aria-label="Abrir menu">
+                    ☰ 
+                </button>
+                <!-- Menu -->
+                <div class="menu">
+                    <a href="/user">Menu</a>
+                    <a href="/user/all-books">Acervo</a>
+                    <a href="#">Favoritos</a>
+                    <a href="/user/profile">Perfil</a>
+                    <a href="/auth/login">Sair</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Top Page -->
+        <div class="favoritos-container-body">
+            <div class="favoritos-top">
+                <h1>Favoritos</h1>
+            </div>
+        </div>
+
+        <!-- Lista de Favoritos -->
+        <div class="favoritos-container-livros">
+            <div class="container">
+                <div class="favoritos-livros-grid">
+                    <% favorites.forEach(book => { %>
+                        <div class="favoritos-livro-card">
+                            <a href="/user/book/<%= book.id %>">
+                                <div class="favoritos-livro-imagem-container">
+                                    <img class="favoritos-livro-imagem" src="<%= book.cover_image %>" alt="Capa">
+                                </div>
+                                <div class="favoritos-livro-info">
+                                    <h3 class="favoritos-livro-titulo"><%= book.title %></h3>
+                                    <p class="favoritos-livro-autor"><%= book.author %></p>
+                                </div>
+                            </a>
+                            <!-- Formulário de remoção fora do link -->
+                            <form action="/user/book/<%= book.id %>/unfavorite" method="POST" class="favoritos-remover-form">
+                                <button type="submit" class="favoritos-remover-botao">×</button>
+                            </form>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p class="footer-nome"></p>
+        <p></p>
+    </footer>
+
+    <script src="/javascript/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Comentários</title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+    <div class="comments-container">
+        <h1>Gerenciar Comentários</h1>
+        <ul class="comments-list">
+            <% comments.forEach(comment => { %>
+                <li>
+                    <strong><%= comment.nickname %>:</strong> <%= comment.comment %> <br>
+                    <em>Livro: <%= comment.book_title %></em>
+                    <form action="/admin/comments/<%= comment.id %>/delete" method="POST">
+                        <button type="submit">❌ Deletar</button>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+        <a href="/admin" class="back-link">⬅️ Voltar</a>
+    </div>
+</body>
+</html>

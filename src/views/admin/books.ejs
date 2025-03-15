@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Livros na Biblioteca - Saberes</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f6f7fb;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="books-container">
+        <h1>Livros na Biblioteca</h1>
+        <a href="/admin/novolivro" class="books-button">
+            <i class="fas fa-plus"></i> Adicionar Livro
+        </a>
+        <ul class="books-livros-lista">
+            <% books.forEach(book => { %>
+                <li class="books-livro-item">
+                    <img src="<%= book.cover_image %>" alt="<%= book.title %>" class="books-livro-imagem">
+                    <div class="books-livro-info">
+                        <strong><%= book.title %></strong> - <%= book.author %>
+                    </div>
+                    <div class="books-livro-acoes">
+                        <a href="/admin/editar/<%= book.id %>" class="books-acao-btn">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
+                        <form action="/admin/remover/<%= book.id %>" method="POST" style="display:inline;">
+                            <button type="submit" class="books-acao-btn books-remover">
+                                <i class="fas fa-trash"></i> Remover
+                            </button>
+                        </form>
+                    </div>
+                </li>
+            <% }) %>
+        </ul>
+        <a href="/admin" class="books-button books-voltar">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </a>
+    </div>
+</body>
+</html>

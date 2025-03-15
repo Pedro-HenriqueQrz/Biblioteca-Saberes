@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Saberes</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <div class="navbar-content">
+                <a href="#" class="logo">SABERES</a>
+                <button class="hamburguer" aria-label="Abrir menu">
+                    ☰ 
+                </button>
+                <!-- Menu -->
+                <div class="menu">
+                    <a href="#">Menu</a>
+                    <a href="/user/all-books">Acervo</a>
+                    <a href="/user/favorites">Favoritos</a>
+                    <a href="/user/profile">Perfil</a>
+                    <a href="/auth/login">Sair</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+
+        <div class="carrossel">
+            <div class="carrossel-container">
+                <!-- Slide 1: Boas-Vindas -->
+                <div class="slide">
+                    <div class="container">
+                        <h2>BEM VINDO AO <span>SABERES</span></h2>
+                        <p>Aqui, você encontra milhares de livros, artigos e conteúdos <span>gratuitos</span>, cuidadosamente selecionados para <span>inspirar, educar e conectar</span> pessoas. Explore, aprenda e compartilhe — <span>o saber é para todos!</span></p>
+                        <a href="/user/all-books" class="btn">Explore o Acervo</a>
+                    </div>
+                </div>
+                <!-- Slide 2: Autores Amadores -->
+                <div class="slide">
+                    <div class="container">
+                        <h2>Compartilhe <span>Sua História</span></h2>
+                        <p>É um autor iniciante? No Saberes, você tem um espaço <span>gratuito e aberto</span> para publicar suas obras e compartilhar sua escrita com o mundo.</p>
+                        <a href="/user/como-publicar" class="btn">Saiba Como Publicar</a>
+                    </div>
+                </div>
+                <!-- Slide 3: Destaque do Acervo -->
+                <div class="slide">
+                    <div class="container">
+                        <h2>Conhecimento ao <span>Seu Alcance</span></h2>
+                        <p>No Saberes, o conhecimento está a apenas um clique de distância. Com uma interface <span>simples e intuitiva</span>, você navega por milhares de livros, artigos e conteúdos gratuitos. Seja para <span>estudar, se inspirar ou se divertir</span>, aqui você encontra o que precisa — e muito mais!</p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Bolinhas de navegação -->
+            <div class="carrossel-bolinhas">
+                <span class="bolinha" data-slide="0"></span>
+                <span class="bolinha" data-slide="1"></span>
+                <span class="bolinha" data-slide="2"></span>
+            </div>
+        </div>
+
+        <div class="categoria-livros">
+            <% for (const category in booksByCategory) { %>
+                <% if (category === "Romance" || category === "Contos" || category === "Literatura") { %>
+                    <div class="categoria-container">
+                        <h3 class="categoria-titulo"><%= category %></h3>
+                        <div class="categoria-livros-grid">
+                            <% booksByCategory[category].forEach(book => { %>
+                                <div class="categoria-livro-card fade-in-card"> <!-- Adicionei a classe fade-in-card -->
+                                    <a href="/user/book/<%= book.id %>" class="categoria-livro-link">
+                                        <img src="<%= book.cover_image %>" alt="<%= book.title %>" class="categoria-livro-imagem">
+                                        <div class="categoria-livro-info">
+                                            <h4 class="categoria-livro-titulo"><%= book.title %></h4>
+                                            <p class="categoria-livro-autor"><strong>Autor:</strong> <%= book.author %></p>
+                                            <p class="categoria-livro-genero"><strong>Gênero:</strong> <%= book.genre %></p>
+                                        </div>
+                                    </a>    
+                                </div>
+                            <% }); %>
+                        </div>
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p class="footer-nome">© 2023 Saberes. Todos os direitos reservados.</p>
+        <p>Desenvolvido por Pedro</p>
+    </footer>
+
+    <script src="/javascript/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Admin - Saberes</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f6f7fb;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Bem-vindo</h1>
+        <div class="admin-actions">
+            <a href="/admin/livros" class="admin-button">
+                <i class="fas fa-book"></i> Gerenciar Livros
+            </a>
+            <a href="/admin/comments" class="admin-button">
+                <i class="fas fa-comments"></i> Gerenciar Comentários
+            </a>
+            <a href="/auth/login" class="admin-button logout">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </a>
+        </div>
+    </div>
+</body>
+</html>
