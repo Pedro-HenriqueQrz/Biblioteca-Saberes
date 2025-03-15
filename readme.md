@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Biblioteca Digital
 
 Bem-vindo à Biblioteca Digital, um sistema completo para gerenciamento de livros digitais. Este projeto foi desenvolvido utilizando Node.js, Express, Knex.js e EJS, e permite que usuários registrem, façam login, visualizem livros disponíveis, baixem e leiam livros virtualmente. Administradores têm permissões adicionais para gerenciar os livros disponíveis na biblioteca.
